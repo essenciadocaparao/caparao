@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Essência do Caparaó — Cachaça de Alambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--black:#0D0D0B;--dark:#131310;--dark2:#1A1A16;--dark3:#222218;--text:#E8E4D8;--text-muted:#9A9480;--text-dim:#605C4E;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.4s;}
+nav.scrolled{background:rgba(13,13,11,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-hamburger span{width:24px;height:1.5px;background:var(--text-muted);display:block;transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(13,13,11,0.98);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--text);text-decoration:none;letter-spacing:0.1em;transition:color 0.3s;}
+.mobile-menu a:hover{color:var(--gold);}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--text-muted);font-size:1.8rem;cursor:pointer;}
+
+/* HERO */
+#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 2rem 5rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,11,0.2) 0%,rgba(13,13,11,0.65) 55%,var(--black) 100%);z-index:1;}
+.hero-bg-img{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;filter:brightness(0.4) sepia(0.15);}
+.mountain-scene{position:absolute;top:0;left:0;right:0;height:78%;z-index:0;}
+#particles{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;opacity:0;animation:floatUp var(--dur,8s) ease-in var(--delay,0s) infinite;}
+@keyframes floatUp{0%{opacity:0;transform:translateY(0) scale(0);}10%{opacity:0.5;}90%{opacity:0.1;}100%{opacity:0;transform:translateY(-100vh) scale(0.3);}}
+.hero-content{position:relative;z-index:2;max-width:680px;}
+.hero-eyebrow{font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,9vw,5.5rem);font-weight:300;line-height:0.95;margin-bottom:1.2rem;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:0.85rem;letter-spacing:0.05em;color:var(--text-muted);max-width:380px;line-height:1.85;margin-bottom:2rem;}
+/* CTA com pulso de atenção — chama o olhar sem ser agressivo */
+.hero-cta{display:inline-flex;align-items:center;gap:0.75rem;padding:0.9rem 2rem;border:1px solid var(--gold);color:var(--gold);font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;position:relative;}
+.hero-cta:hover{background:var(--gold);color:var(--black);}
+.hero-cta::after{content:'→';transition:transform 0.3s;}
+.hero-cta:hover::after{transform:translateX(5px);}
+/* Halo dourado pulsante no CTA — direciona o olhar (attention bias) */
+.hero-cta::before{content:'';position:absolute;inset:-4px;border:1px solid rgba(201,168,76,0.3);animation:haloPulse 2.5s ease infinite;}
+@keyframes haloPulse{0%,100%{opacity:0;transform:scale(1);}50%{opacity:1;transform:scale(1.04);}}
+
+/* === SOCIAL PROOF TICKER — prova social em movimento === */
+.social-ticker{
+  position:absolute;bottom:5rem;left:2rem;z-index:3;
+  display:flex;flex-direction:column;gap:0.5rem;
+}
+.ticker-item{
+  display:flex;align-items:center;gap:0.65rem;
+  background:rgba(13,13,11,0.85);border:1px solid rgba(201,168,76,0.2);
+  backdrop-filter:blur(8px);padding:0.6rem 1rem;
+  animation:tickerSlide 0.4s ease both;
+  max-width:260px;
+}
+@keyframes tickerSlide{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
+.ticker-dot{width:6px;height:6px;border-radius:50%;background:#25D366;flex-shrink:0;animation:dotBlink 1.5s ease infinite;}
+@keyframes dotBlink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.ticker-text{font-size:0.68rem;color:var(--text-muted);line-height:1.4;}
+.ticker-text strong{color:var(--text);font-weight:400;}
+
+/* === URGENCY BADGE === */
+.urgency-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.35);
+  padding:0.35rem 0.85rem;margin-bottom:1rem;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+}
+.urgency-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:dotBlink 1.2s ease infinite;}
+
+/* === PRODUTO — ELEMENTOS PSICOLÓGICOS === */
+/* Faixa "Mais Vendido" — social proof */
+.bestseller-ribbon{
+  position:absolute;top:1.25rem;right:-0.5rem;
+  background:var(--gold);color:var(--black);
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;
+  padding:0.3rem 1rem;font-weight:500;
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,6% 50%);
+}
+/* Contador de estoque — scarcity */
+.stock-bar{margin-bottom:1rem;}
+.stock-label{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.4rem;display:flex;justify-content:space-between;}
+.stock-label span{color:var(--gold);}
+.stock-track{height:2px;background:rgba(255,255,255,0.06);position:relative;}
+.stock-fill{height:100%;background:linear-gradient(to right,var(--gold-dark),var(--gold));transition:width 1s ease;}
+/* Estrelas de avaliação */
+.stars{color:var(--gold);font-size:0.9rem;letter-spacing:0.1em;margin-bottom:0.5rem;}
+.stars-count{font-size:0.68rem;color:var(--text-dim);margin-left:0.4rem;}
+/* Compra segura */
+.trust-row{display:flex;gap:1rem;margin-top:0.75rem;flex-wrap:wrap;}
+.trust-item{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:0.3rem;}
+.trust-item::before{content:'✓';color:var(--gold);font-size:0.7rem;}
+
+/* === SEÇÃO PROVA SOCIAL === */
+#social-proof{padding:4rem 2rem;border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1);}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin-top:2rem;}
+.proof-card{background:var(--dark2);padding:1.75rem 1.5rem;position:relative;}
+.proof-card::before{content:'"';font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(201,168,76,0.12);position:absolute;top:0.5rem;left:1rem;line-height:1;}
+.proof-text{font-size:0.85rem;line-height:1.8;color:var(--text-muted);margin-bottom:1rem;padding-top:1.5rem;font-style:italic;}
+.proof-author{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+.proof-stars{color:var(--gold);font-size:0.8rem;margin-bottom:0.5rem;}
+
+/* === SEÇÃO CTA FINAL (FOMO) === */
+#cta-final{
+  padding:5rem 2rem;text-align:center;
+  background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,transparent 50%,rgba(201,168,76,0.04) 100%);
+  border-top:1px solid rgba(201,168,76,0.1);
+  position:relative;overflow:hidden;
+}
+#cta-final::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,168,76,0.05),transparent);
+}
+.cta-final-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;margin-bottom:1rem;position:relative;z-index:1;}
+.cta-final-sub{font-size:0.85rem;color:var(--text-muted);max-width:420px;margin:0 auto 2rem;line-height:1.8;position:relative;z-index:1;}
+.cta-final-btn{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:var(--gold);color:var(--black);
+  padding:1.1rem 2.5rem;font-family:'Jost',sans-serif;
+  font-size:0.75rem;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;
+  text-decoration:none;transition:all 0.3s;position:relative;z-index:1;
+  border:none;cursor:pointer;
+}
+.cta-final-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,0.25);}
+.cta-scarcity{font-size:0.68rem;color:var(--text-dim);margin-top:1rem;position:relative;z-index:1;letter-spacing:0.1em;}
+.cta-scarcity strong{color:var(--gold);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeUp 1s ease 1.2s both;}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:0.3;transform:scaleY(0.6);}50%{opacity:1;transform:scaleY(1);}}
+.scroll-txt{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-dim);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.85s ease,transform 0.85s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity 0.85s ease,transform 0.85s ease;}
+.reveal-l.visible{opacity:1;transform:none;}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity 0.85s ease,transform 0.85s ease;}
+.reveal-r.visible{opacity:1;transform:none;}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:1.5rem;margin:0 2rem;padding:2.5rem 0;border-top:1px solid rgba(201,168,76,0.18);}
+.divider span{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-dim);white-space:nowrap;}
+.divider-line{flex:1;height:1px;background:rgba(201,168,76,0.1);}
+
+/* ABOUT */
+#about{padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img-wrap{position:relative;aspect-ratio:3/4;}
+.about-img{width:100%;height:100%;object-fit:cover;filter:sepia(10%) contrast(1.05);}
+.about-img-border{position:absolute;inset:-10px;border:1px solid rgba(201,168,76,0.22);pointer-events:none;}
+.about-img-label{position:absolute;bottom:-0.75rem;right:-0.75rem;background:var(--dark2);border:1px solid rgba(201,168,76,0.22);padding:0.85rem 1.25rem;}
+.about-img-label p{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+.about-img-label strong{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--text);}
+.section-eyebrow{font-size:0.63rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:300;line-height:1.1;margin-bottom:1.25rem;}
+.section-body{font-size:0.88rem;line-height:1.9;color:var(--text-muted);margin-bottom:0.85rem;}
+.stat-row{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(201,168,76,0.15);flex-wrap:wrap;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold);}
+.stat-label{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);margin-top:0.2rem;}
+
+/* PRODUCTS */
+#products{padding:5rem 2rem;}
+#products>.section-eyebrow,#products>.section-title{text-align:center;}
+#products>.section-title{margin-bottom:3rem;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;}
+.product-card{background:var(--dark2);padding:2rem 1.75rem;display:flex;flex-direction:column;transition:background 0.3s;position:relative;overflow:hidden;}
+.product-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform 0.4s;}
+.product-card:hover{background:var(--dark3);}
+.product-card:hover::before{transform:scaleX(1);}
+.product-card::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(to right,transparent,rgba(201,168,76,0.05),transparent);transform:skewX(-20deg);transition:left 0.6s;pointer-events:none;}
+.product-card:hover::after{left:130%;}
+.product-badge{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:0.22rem 0.65rem;display:inline-block;margin-bottom:1.5rem;align-self:flex-start;}
+.product-img{width:100%;aspect-ratio:3/4;object-fit:cover;margin-bottom:1.25rem;filter:sepia(8%);transition:filter 0.4s;}
+.product-card:hover .product-img{filter:sepia(0%);}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;margin-bottom:0.4rem;}
+.product-sub{font-size:0.68rem;letter-spacing:0.14em;color:var(--text-dim);text-transform:uppercase;margin-bottom:0.85rem;}
+.product-desc{font-size:0.8rem;line-height:1.8;color:var(--text-muted);flex:1;margin-bottom:1.25rem;}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--gold);margin-bottom:1.25rem;}
+.product-price span{font-size:0.82rem;color:var(--text-dim);font-family:'Jost',sans-serif;}
+.prod-qty-row{display:flex;align-items:center;gap:0.6rem;}
+.prod-qty-ctrl{display:flex;align-items:center;border:1px solid rgba(201,168,76,0.28);flex-shrink:0;}
+.prod-qty-btn{background:none;border:none;color:var(--gold);width:32px;height:36px;font-size:1.1rem;cursor:pointer;transition:background 0.2s;line-height:1;}
+.prod-qty-btn:hover{background:rgba(201,168,76,0.1);}
+.prod-qty-num{font-size:0.88rem;min-width:28px;text-align:center;color:var(--text);border-left:1px solid rgba(201,168,76,0.15);border-right:1px solid rgba(201,168,76,0.15);height:36px;display:flex;align-items:center;justify-content:center;}
+.btn-buy{flex:1;background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--text);font-family:'Jost',sans-serif;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;padding:0 1rem;height:36px;cursor:pointer;transition:all 0.3s;}
+.btn-buy:hover{background:var(--gold);border-color:var(--gold);color:var(--black);}
+
+/* ORIGIN */
+#origin{padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.origin-mountain{position:absolute;inset:0;z-index:0;opacity:0.055;}
+#origin .section-eyebrow,#origin .section-title,#origin .section-body{position:relative;z-index:1;}
+#origin .section-title{font-size:clamp(2.2rem,5vw,3.8rem);max-width:620px;margin:0 auto 1.25rem;}
+#origin .section-body{max-width:500px;margin:0 auto 3rem;}
+.origin-facts{display:flex;justify-content:center;gap:3.5rem;position:relative;z-index:1;flex-wrap:wrap;}
+.origin-fact-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);display:block;}
+.origin-fact-label{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);display:block;margin-top:0.2rem;}
+
+/* FOOTER */
+footer{padding:4rem 2rem;border-top:1px solid rgba(201,168,76,0.1);display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;}
+.footer-brand .nav-logo{display:block;margin-bottom:0.9rem;}
+.footer-brand p{font-size:0.78rem;line-height:1.85;color:var(--text-dim);max-width:260px;}
+.footer-col h4{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:0.65rem;}
+.footer-col ul a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.3s;}
+.footer-col ul a:hover{color:var(--text);}
+.footer-bottom{padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.04);flex-wrap:wrap;gap:0.75rem;}
+.footer-bottom p{font-size:0.7rem;color:var(--text-dim);}
+.admin-link{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);cursor:pointer;transition:color 0.3s;background:none;border:none;font-family:'Jost',sans-serif;}
+.admin-link:hover{color:var(--gold);}
+.wa-btn{display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:white;text-decoration:none;font-size:0.72rem;letter-spacing:0.1em;padding:0.7rem 1.4rem;transition:background 0.2s;font-family:'Jost',sans-serif;margin-top:0.85rem;}
+.wa-btn:hover{background:#1ebe5d;}
+
+/* CART FAB */
+.cart-fab{position:fixed;bottom:1.75rem;right:1.75rem;background:var(--gold);color:var(--black);border:none;padding:0.9rem 1.4rem;font-family:'Jost',sans-serif;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;cursor:pointer;display:none;align-items:center;gap:0.6rem;z-index:150;transition:all 0.3s;box-shadow:0 4px 24px rgba(201,168,76,0.25);}
+.cart-fab.show{display:flex;}
+.cart-fab:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(201,168,76,0.35);}
+.cart-count{background:var(--black);color:var(--gold);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:500;}
+
+/* MODALS */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:500;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
+.overlay.on{display:flex;}
+
+/* panels */
+.panel{background:var(--dark2);border:1px solid rgba(201,168,76,0.22);width:100%;border-radius:2px;}
+.cart-panel{max-width:460px;max-height:90vh;overflow-y:auto;}
+.order-panel{max-width:440px;max-height:90vh;overflow-y:auto;}
+.admin-panel{max-width:880px;max-height:92vh;overflow-y:auto;}
+
+.p-header{padding:1.5rem 1.75rem;border-bottom:1px solid rgba(201,168,76,0.1);display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:var(--dark2);z-index:10;}
+.p-header h2{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;}
+.p-header p{font-size:0.72rem;color:var(--text-dim);margin-top:0.2rem;}
+.p-body{padding:1.25rem 1.75rem;}
+.close-btn{background:none;border:1px solid rgba(201,168,76,0.22);color:var(--text-muted);width:32px;height:32px;font-size:1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.close-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* cart items */
+.cart-item{display:flex;gap:0.85rem;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.05);align-items:center;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-size:0.88rem;margin-bottom:0.2rem;}
+.cart-item-sub{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold);}
+.cqty{display:flex;align-items:center;border:1px solid rgba(201,168,76,0.18);}
+.cqty-btn{background:none;border:none;color:var(--text-muted);font-size:1rem;width:28px;height:30px;cursor:pointer;transition:color 0.2s;}
+.cqty-btn:hover{color:var(--gold);}
+.cqty-num{font-size:0.82rem;min-width:24px;text-align:center;border-left:1px solid rgba(201,168,76,0.12);border-right:1px solid rgba(201,168,76,0.12);height:30px;display:flex;align-items:center;justify-content:center;}
+.cart-total-sec{padding:1.25rem 1.75rem;border-top:1px solid rgba(201,168,76,0.15);}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.75rem;}
+.cart-total-row span{font-size:0.78rem;color:var(--text-dim);}
+.cart-total-row strong{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);}
+.btn-checkout{width:100%;background:var(--gold);border:none;color:var(--black);font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;padding:1rem;cursor:pointer;transition:all 0.2s;margin-top:0.85rem;}
+.btn-checkout:hover{background:var(--gold-light);}
+.empty-cart{text-align:center;padding:3rem 0;color:var(--text-dim);font-size:0.85rem;}
+
+/* forms */
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.45rem;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.16);color:var(--text);font-family:'Jost',sans-serif;font-size:0.88rem;font-weight:300;padding:0.7rem 0.9rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;border-radius:0;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(201,168,76,0.5);}
+.form-group textarea{resize:vertical;min-height:70px;}
+.form-group select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.9rem center;}
+.form-group select option{background:var(--dark2);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.btn-main{background:var(--gold);border:none;color:var(--black);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;padding:0.8rem 1.75rem;cursor:pointer;transition:all 0.2s;}
+.btn-main:hover{background:var(--gold-light);}
+.btn-sec{background:none;border:1px solid rgba(201,168,76,0.28);color:var(--text-dim);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.8rem 1.25rem;cursor:pointer;transition:all 0.2s;}
+.btn-sec:hover{border-color:var(--gold);color:var(--gold);}
+.btn-del{background:none;border:1px solid rgba(180,60,60,0.3);color:rgba(180,60,60,0.75);font-family:'Jost',sans-serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.45rem 0.8rem;cursor:pointer;transition:all 0.2s;}
+.btn-del:hover{border-color:#c04040;color:#c04040;}
+
+/* admin */
+.a-header{padding:1.5rem 1.75rem;border-bottom:1px solid rgba(201,168,76,0.15);display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:var(--dark2);z-index:10;}
+.a-header h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--gold);}
+.a-header p{font-size:0.72rem;color:var(--text-dim);margin-top:0.2rem;}
+.admin-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.1);padding:0 1.75rem;overflow-x:auto;}
+.admin-tab{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-dim);padding:0.85rem 1rem;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;background:none;border-left:none;border-right:none;border-top:none;white-space:nowrap;font-family:'Jost',sans-serif;}
+.admin-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.admin-tab:hover{color:var(--text-muted);}
+.admin-content{padding:1.75rem;}
+.admin-sec{display:none;}
+.admin-sec.on{display:block;}
+.admin-sec h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;margin-bottom:0.4rem;}
+.admin-sec>p{font-size:0.78rem;color:var(--text-dim);margin-bottom:1.5rem;}
+.prod-item{background:rgba(255,255,255,0.03);padding:1.1rem 1.25rem;display:flex;align-items:center;gap:1rem;margin-bottom:2px;flex-wrap:wrap;}
+.prod-item-info{flex:1;min-width:100px;}
+.prod-item-name{font-size:0.88rem;margin-bottom:0.15rem;}
+.prod-item-meta{font-size:0.7rem;color:var(--text-dim);}
+.prod-item-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);}
+.upload-area{border:1px dashed rgba(201,168,76,0.25);padding:1.25rem;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;}
+.upload-area:hover{border-color:var(--gold);background:rgba(201,168,76,0.04);}
+.upload-area input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-area strong{color:var(--gold);font-weight:400;font-size:0.82rem;display:block;margin-bottom:0.2rem;}
+.upload-area p{font-size:0.72rem;color:var(--text-dim);}
+.upload-prev{width:100%;max-height:120px;object-fit:contain;margin-top:0.65rem;display:none;}
+.color-row{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.color-lbl{font-size:0.82rem;color:var(--text-muted);}
+.color-sub{font-size:0.7rem;color:var(--text-dim);margin-top:0.12rem;}
+.color-pick{display:flex;align-items:center;gap:0.65rem;}
+.color-pick input[type="color"]{width:38px;height:38px;padding:2px;border:1px solid rgba(201,168,76,0.28);background:transparent;cursor:pointer;border-radius:2px;}
+.color-pick span{font-size:0.7rem;color:var(--text-dim);font-family:monospace;}
+.hero-prev{width:100%;height:130px;object-fit:cover;display:none;margin-top:0.65rem;border:1px solid rgba(201,168,76,0.18);}
+#loginError{color:#c85050;font-size:0.76rem;margin-top:0.65rem;display:none;}
+#pwdMsg{margin-top:0.65rem;font-size:0.76rem;display:none;}
+.sep{border:none;border-top:1px solid rgba(201,168,76,0.1);margin:1.5rem 0;}
+
+/* TOAST */
+.toast{position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%) translateY(70px);background:var(--dark2);border:1px solid var(--gold);color:var(--text);padding:0.8rem 1.75rem;font-size:0.78rem;z-index:900;transition:transform 0.4s ease;white-space:nowrap;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  #hero{padding:0 1.25rem 4.5rem;}
+  .hero-title{font-size:clamp(2.6rem,11vw,4rem);}
+  .scroll-ind{display:none;}
+  .divider{margin:0 1.25rem;padding:2rem 0;}
+  .divider span{font-size:0.58rem;letter-spacing:0.15em;}
+  #about{grid-template-columns:1fr;gap:2.5rem;padding:3.5rem 1.25rem;}
+  .about-img-wrap{max-width:300px;margin:0 auto;}
+  #products{padding:3.5rem 1.25rem;}
+  .products-grid{grid-template-columns:1fr;}
+  #origin{padding:4.5rem 1.25rem;}
+  .origin-facts{gap:2rem;}
+  footer{grid-template-columns:1fr;gap:2rem;padding:3rem 1.25rem;}
+  .footer-bottom{padding:1.25rem;flex-direction:column;text-align:center;}
+  .form-row{grid-template-columns:1fr;}
+  .overlay{padding:0;align-items:flex-end;}
+  .panel{border-radius:12px 12px 0 0;max-height:93vh;}
+  .cart-fab{bottom:1rem;right:1rem;}
+  .admin-tabs{gap:0;}
+  .admin-tab{padding:0.75rem 0.75rem;font-size:0.6rem;}
+  .stat-row{gap:1.75rem;}
+  .social-ticker{left:1.25rem;bottom:4rem;}
+  .ticker-item{max-width:220px;}
+  #social-proof{padding:3rem 1.25rem;}
+  .proof-grid{grid-template-columns:1fr;}
+  #cta-final{padding:4rem 1.25rem;}
+  .trust-row{gap:0.6rem;}
+  .bestseller-ribbon{font-size:0.52rem;}
+}
+@media(max-width:400px){
+  .hero-title{font-size:2.3rem;}
+  .product-card{padding:1.5rem 1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">Essência do Caparaó</a>
+  <ul class="nav-links">
+    <li><a href="#about">A Origem</a></li>
+    <li><a href="#products">Produtos</a></li>
+    <li><a href="#origin">O Terroir</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#about" onclick="toggleMenu()">A Origem</a>
+  <a href="#products" onclick="toggleMenu()">Produtos</a>
+  <a href="#origin" onclick="toggleMenu()">O Terroir</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img" id="heroBgImg"></div>
+  <svg class="mountain-scene" id="mountainSvg" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0D0D0B"/>
+        <stop offset="100%" stop-color="#1A1A14"/>
+      </linearGradient>
+      <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0D0D0B" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#0D0D0B" stop-opacity="1"/>
+      </linearGradient>
+      <linearGradient id="peakShade" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#0D0D0B" stop-opacity="0.7"/>
+        <stop offset="40%" stop-color="#222218" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#0D0D0B" stop-opacity="0.5"/>
+      </linearGradient>
+      <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+    </defs>
+
+    <!-- Céu preenchido -->
+    <rect width="1440" height="800" fill="url(#skyGrad)"/>
+
+    <!-- Estrelas -->
+    <circle cx="80"  cy="60"  r="0.9" fill="#C9A84C" opacity="0.55"/>
+    <circle cx="210" cy="35"  r="1.2" fill="#C9A84C" opacity="0.4"/>
+    <circle cx="370" cy="80"  r="0.8" fill="#C9A84C" opacity="0.6"/>
+    <circle cx="520" cy="28"  r="1.0" fill="#C9A84C" opacity="0.5"/>
+    <circle cx="680" cy="55"  r="0.7" fill="#C9A84C" opacity="0.65"/>
+    <circle cx="830" cy="20"  r="1.1" fill="#C9A84C" opacity="0.45"/>
+    <circle cx="990" cy="70"  r="0.9" fill="#C9A84C" opacity="0.5"/>
+    <circle cx="1130" cy="40" r="1.3" fill="#C9A84C" opacity="0.35"/>
+    <circle cx="1280" cy="65" r="0.8" fill="#C9A84C" opacity="0.55"/>
+    <circle cx="1390" cy="30" r="1.0" fill="#C9A84C" opacity="0.45"/>
+    <circle cx="150" cy="115" r="0.7" fill="#C9A84C" opacity="0.4"/>
+    <circle cx="450" cy="130" r="0.9" fill="#C9A84C" opacity="0.35"/>
+    <circle cx="760" cy="95"  r="0.7" fill="#C9A84C" opacity="0.4"/>
+    <circle cx="1050" cy="110" r="1.0" fill="#C9A84C" opacity="0.35"/>
+    <circle cx="1340" cy="100" r="0.8" fill="#C9A84C" opacity="0.4"/>
+
+    <!-- =====================================================
+         CORDILHEIRA DE FUNDO — serras distantes (camada 1)
+         ===================================================== -->
+    <path d="M-20 700
+             L 0   580 L 60  620 L 130 530 L 200 570 L 280 490
+             L 360 540 L 440 470 L 520 510 L 600 450 L 660 480
+             L 720 420 L 800 460 L 880 400 L 960 440 L 1040 380
+             L 1120 420 L 1200 370 L 1280 410 L 1360 360 L 1440 390
+             L 1440 800 L -20 800 Z"
+          fill="#111110" opacity="0.45"/>
+
+    <!-- =====================================================
+         PERFIL DO PICO DA BANDEIRA — vista clássica do leste
+         Características reais:
+         - Pico principal: ~720px de x, altura ~158px (topo)
+         - Escarpamento muito íngreme no lado leste (direito)
+         - Crista longa e suave descendo para sudoeste (esquerda)
+         - Pico do Cristal: vizinho menor à direita, ~870px, ~220px
+         - Platô do Caparaó visível à esquerda
+         ===================================================== -->
+
+    <!-- Sombra/glow atmosférico atrás do pico principal -->
+    <ellipse cx="715" cy="300" rx="180" ry="120" fill="#C9A84C" opacity="0.025" filter="url(#blur1)"/>
+
+    <!-- Maciço principal — corpo da montanha (camada base larga) -->
+    <path d="M 0 800
+             L 0 680
+             L 80 650 L 160 620 L 240 600 L 320 580
+             L 400 555 L 460 535 L 510 510
+             L 555 488 L 590 465 L 618 442
+             L 640 418 L 658 395 L 672 368
+             L 682 342 L 690 310 L 696 280
+             L 702 248 L 707 218 L 711 192
+             L 714 170 L 716 155 L 718 158
+             L 721 172 L 726 200
+             L 733 235 L 742 275 L 754 320
+             L 770 368 L 790 412
+             L 815 450 L 845 480 L 878 505
+             L 915 522 L 955 535 L 998 545
+             L 1045 550 L 1100 548 L 1155 542
+             L 1210 532 L 1260 518 L 1310 500
+             L 1360 480 L 1410 458 L 1440 440
+             L 1440 800 Z"
+          fill="#1C1C18"/>
+
+    <!-- Face leste — escarpamento íngreme (característica marcante) -->
+    <path d="M 716 155
+             L 720 168 L 726 195 L 736 232
+             L 750 278 L 768 328 L 790 375
+             L 818 418 L 850 452 L 885 478
+             L 920 496 L 958 508 L 998 515
+             L 716 155 Z"
+          fill="#141412" opacity="0.8"/>
+
+    <!-- Aresta noroeste — crista longa descendo (outro traço real) -->
+    <path d="M 716 155
+             L 710 175 L 702 205 L 692 242
+             L 680 285 L 666 330 L 650 375
+             L 632 418 L 610 455 L 585 485
+             L 555 510 L 716 155 Z"
+          fill="#191916" opacity="0.6"/>
+
+    <!-- Detalhe do pico — rocha exposta no topo (clarinho) -->
+    <path d="M 712 162 L 716 155 L 720 162 L 718 170 L 714 170 Z"
+          fill="#2A2820" opacity="0.9"/>
+
+    <!-- Linha de neve / rocha clara no pico (2892m tem pouca vegetação) -->
+    <path d="M 714 158 L 716 155 L 718 158 L 717 164 L 715 164 Z"
+          fill="#C9A84C" opacity="0.08"/>
+
+    <!-- =====================================================
+         PICO DO CRISTAL — menor, à direita do Bandeira
+         Característica: topo mais arredondado, ~670m menor
+         ===================================================== -->
+    <path d="M 820 800
+             L 820 545 L 855 510 L 878 488
+             L 898 465 L 912 442 L 922 418
+             L 928 395 L 932 370 L 934 345
+             L 936 322 L 936 300 L 935 280
+             L 933 258 L 929 238 L 924 222
+             L 918 210 L 910 202 L 902 200
+             L 893 202 L 884 208 L 876 218
+             L 868 232 L 862 250 L 858 270
+             L 856 292 L 856 315 L 858 340
+             L 862 366 L 870 394 L 882 425
+             L 898 458 L 918 490 L 820 800 Z"
+          fill="#181816" opacity="0.85"/>
+
+    <!-- =====================================================
+         PICO DO CALÇADO — à esquerda, mais baixo e arredondado
+         ===================================================== -->
+    <path d="M 0 800 L 0 650
+             L 50 625 L 110 598 L 175 572
+             L 240 548 L 305 528 L 365 510
+             L 415 492 L 455 472 L 488 450
+             L 510 426 L 524 400 L 530 372
+             L 528 342 L 520 312 L 506 285
+             L 488 262 L 466 244 L 443 232
+             L 418 226 L 394 226 L 370 232
+             L 346 244 L 324 262 L 305 284
+             L 289 312 L 278 344 L 272 378
+             L 272 412 L 278 444 L 290 472
+             L 310 496 L 336 515
+             L 0 800 Z"
+          fill="#161614" opacity="0.7"/>
+
+    <!-- =====================================================
+         CAMADA DE NÉVOA / VALE — efeito atmosférico real
+         O Caparaó tem névoa frequente nas encostas
+         ===================================================== -->
+    <!-- Névoa no vale entre os picos -->
+    <path d="M 300 560 Q 500 530 720 545 Q 900 555 1100 540 L 1440 520 L 1440 600 L 0 620 Z"
+          fill="#0D0D0B" opacity="0.3"/>
+    <path d="M 0 620 L 1440 600 L 1440 680 L 0 700 Z"
+          fill="#0D0D0B" opacity="0.5"/>
+
+    <!-- Névoa densa na base -->
+    <rect x="0" y="600" width="1440" height="200" fill="url(#mist)" opacity="0.85"/>
+
+    <!-- Sombra de relevo -->
+    <rect x="0" y="0" width="1440" height="800" fill="url(#peakShade)" opacity="0.4"/>
+
+    <!-- Linha de altitude com indicação — característica icônica -->
+    <line x1="716" y1="155" x2="870" y2="155" stroke="#C9A84C" stroke-width="0.6" opacity="0.4" stroke-dasharray="4,5"/>
+    <text x="875" y="159" fill="#C9A84C" opacity="0.5" font-size="9" font-family="Jost,sans-serif" letter-spacing="1">2.892 m</text>
+
+    <!-- Label do pico -->
+    <text x="680" y="148" fill="#C9A84C" opacity="0.3" font-size="8" font-family="Jost,sans-serif" letter-spacing="2" text-anchor="middle">PICO DA BANDEIRA</text>
+  </svg>
+  <div id="particles"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="urgency-badge"><span class="urgency-dot"></span> <span id="urgencyText">Edição Limitada — Safra 2024</span></div>
+    <p class="hero-eyebrow" id="heroEyebrow">Cachaça de Alambique — Ibitirama, ES</p>
+    <h1 class="hero-title" id="heroTitle">A <em>essência</em><br>das montanhas<br>do Caparaó</h1>
+    <p class="hero-sub" id="heroSubtitle">Destilada nas encostas do Pico da Bandeira, onde o ar puro e a cana-de-açúcar artesanal criam uma cachaça única.</p>
+    <a href="#products" class="hero-cta">Conhecer os produtos</a>
+  </div>
+
+  <!-- Social proof ticker — prova social em tempo real (psicologia: bandwagon effect) -->
+  <div class="social-ticker" id="socialTicker"></div>
+  <div class="scroll-ind">
+    <span class="scroll-txt">Rolar</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <span>Cachaça de Alambique Artesanal</span>
+  <div class="divider-line"></div>
+  <span>Desde as raízes do Caparaó</span>
+  <div class="divider-line"></div>
+  <span>Destilação em Cobre</span>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-wrap reveal-l">
+    <img id="aboutImg" src="Jairo.jpeg" alt="Mestre destilador" class="about-img" onerror="this.style.opacity='0'">
+    <div class="about-img-border"></div>
+    <div class="about-img-label">
+      <p id="masterTitle">Mestre Destilador</p>
+      <strong id="masterName">Jairo</strong>
+    </div>
+  </div>
+  <div class="reveal-r">
+    <p class="section-eyebrow">A Nossa História</p>
+    <h2 class="section-title" id="aboutTitle">Arte e inovação<br>destiladas em cada<br>gota</h2>
+    <p class="section-body" id="aboutText1">Nas encostas do Pico da Bandeira, a mais alta montanha do Espírito Santo e Minas Gerais, nasce a Essência do Caparaó. Uma cachaça que carrega consigo a alma do Caparaó, produzida com cana-de-açúcar cultivada em altitude e destilada em alambique de cobre.</p>
+    <p class="section-body" id="aboutText2">Cada garrafa é o resultado de um processo artesanal rigoroso, respeitando os tempos da natureza e a sabedoria de gerações. Um destilado que conta a história dessa terra.</p>
+    <div class="stat-row">
+      <div><div class="stat-num">42%</div><div class="stat-label">Volume alcoólico</div></div>
+      <div><div class="stat-num">700ml</div><div class="stat-label">Por garrafa</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Artesanal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <p class="section-eyebrow">Nossos Produtos</p>
+  <h2 class="section-title reveal">A Linha Essência</h2>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- ORIGIN -->
+<section id="origin">
+  <svg class="origin-mountain" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <path d="M0 600 L200 300 L300 450 L500 150 L620 350 L720 80 L820 320 L950 180 L1100 380 L1250 200 L1440 350 L1440 600Z" fill="#C9A84C"/>
+  </svg>
+  <p class="section-eyebrow reveal">O Terroir</p>
+  <h2 class="section-title reveal" id="originTitle">Do Pico da Bandeira<br>para o seu copo</h2>
+  <p class="section-body reveal" id="originText">A altitude do Caparaó cria condições únicas para o cultivo da cana-de-açúcar. O clima frio, a água pura das nascentes e o solo rico resultam em uma matéria-prima de qualidade excepcional — e numa cachaça com identidade própria.</p>
+  <div class="origin-facts reveal">
+    <div class="origin-fact"><span class="origin-fact-num">2.892m</span><span class="origin-fact-label">Altitude do Pico</span></div>
+    <div class="origin-fact"><span class="origin-fact-num">100%</span><span class="origin-fact-label">Cana artesanal</span></div>
+    <div class="origin-fact"><span class="origin-fact-num">Cobre</span><span class="origin-fact-label">Alambique</span></div>
+    <div class="origin-fact"><span class="origin-fact-num">ES</span><span class="origin-fact-label">Espírito Santo</span></div>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL — depoimentos reais aumentam conversão em até 270% -->
+<section id="social-proof" class="reveal">
+  <p class="section-eyebrow" style="text-align:center">O que dizem sobre nós</p>
+  <div class="proof-grid" id="proofGrid"></div>
+</section>
+
+<!-- CTA FINAL — FOMO + escassez + ancoragem -->
+<section id="cta-final">
+  <p class="section-eyebrow reveal" style="text-align:center">Peça agora pelo WhatsApp</p>
+  <h2 class="cta-final-title reveal">Lote limitado.<br>Não deixe para amanhã.</h2>
+  <p class="cta-final-sub reveal">Cada safra da Essência do Caparaó é produzida em quantidade controlada. Quando acaba, acaba — e a próxima leva meses.</p>
+  <button class="cta-final-btn reveal" onclick="document.getElementById('cartFab').click();document.querySelector('.btn-checkout')&&document.getElementById('orderOverlay').classList.add('on')">
+    Fazer meu pedido agora
+  </button>
+  <p class="cta-scarcity reveal">🔒 Entrega segura · <strong>Frete grátis acima de 3 garrafas</strong></p>
+</section>
+<footer>
+  <div class="footer-brand">
+    <a class="nav-logo" href="#">Essência do Caparaó</a>
+    <p id="footerDesc">Cachaça de alambique artesanal produzida nas encostas do Pico da Bandeira, em Ibitirama, Espírito Santo.</p>
+    <a id="waLink" href="https://wa.me/5528999698600" class="wa-btn" target="_blank">WhatsApp</a>
+  </div>
+  <div class="footer-col">
+    <h4>Navegação</h4>
+    <ul>
+      <li><a href="#about">A Origem</a></li>
+      <li><a href="#products">Produtos</a></li>
+      <li><a href="#origin">O Terroir</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contato</h4>
+    <ul>
+      <li><a id="fc1">Ibitirama, ES</a></li>
+      <li><a id="fc2">Região do Caparaó</a></li>
+      <li><a id="fc3">Pico da Bandeira</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 Essência do Caparaó — Todos os direitos reservados</p>
+  <button class="admin-link" onclick="openAdmin()">Área Restrita</button>
+</div>
+
+<!-- CART FAB -->
+<button class="cart-fab" id="cartFab" onclick="openCart()">
+  Carrinho <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- ============ CART MODAL ============ -->
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()">
+  <div class="panel cart-panel">
+    <div class="p-header">
+      <h2>Seu Carrinho</h2>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="p-body" id="cartBody"></div>
+    <div class="cart-total-sec" id="cartTotalSec" style="display:none">
+      <div class="cart-total-row"><span>Total</span><strong id="cartTotalVal">R$ 0,00</strong></div>
+      <button class="btn-checkout" onclick="openOrder()">Finalizar via WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ORDER MODAL ============ -->
+<div class="overlay" id="orderOverlay" onclick="if(event.target===this)closeOrder()">
+  <div class="panel order-panel">
+    <div class="p-header">
+      <div><h2>Dados do Pedido</h2><p>Preencha para enviar pelo WhatsApp</p></div>
+      <button class="close-btn" onclick="closeOrder()">✕</button>
+    </div>
+    <div class="p-body">
+      <div class="form-group"><label>Nome *</label><input type="text" id="oNome" placeholder="Seu nome completo"></div>
+      <div class="form-group"><label>Empresa (opcional)</label><input type="text" id="oEmpresa" placeholder="Bar, restaurante ou empresa"></div>
+      <div class="form-group"><label>Localização</label><input type="text" id="oLocal" placeholder="Ex: Centro - Ibitirama"></div>
+      <div class="form-group"><label>Forma de Pagamento</label>
+        <select id="oPagto">
+          <option>Pix</option><option>Dinheiro</option><option>Cartão de Débito</option><option>Cartão de Crédito</option><option>Transferência Bancária</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Tipo</label>
+        <select id="oEntrega"><option>Entrega</option><option>Retirada no local</option></select>
+      </div>
+      <button class="btn-main" style="width:100%;margin-top:0.5rem" onclick="enviarPedido()">Enviar pelo WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ADMIN MODAL ============ -->
+<div class="overlay" id="adminOverlay" onclick="if(event.target===this)closeAdmin()">
+  <div class="panel admin-panel">
+    <div class="a-header">
+      <div><h2>Painel Administrativo</h2><p>Gestão completa do site</p></div>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="adminLogin">
+      <div style="padding:2.5rem 1.75rem">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:0.4rem">Acesso Restrito</h3>
+        <p style="font-size:0.78rem;color:var(--text-dim);margin-bottom:1.75rem">Exclusivo para o administrador.</p>
+        <div class="form-group"><label>Senha</label><input type="password" id="aPwd" placeholder="Digite sua senha" onkeydown="if(event.key==='Enter')checkLogin()"></div>
+        <button class="btn-main" onclick="checkLogin()">Entrar</button>
+        <div id="loginError">Senha incorreta.</div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="adminDash" style="display:none">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="tab('produtos',this)">Produtos</button>
+        <button class="admin-tab" onclick="tab('aparencia',this)">Aparência</button>
+        <button class="admin-tab" onclick="tab('capa',this)">Capa</button>
+        <button class="admin-tab" onclick="tab('textos',this)">Textos</button>
+        <button class="admin-tab" onclick="tab('contato',this)">Contato</button>
+        <button class="admin-tab" onclick="tab('depoimentos',this)">Depoimentos</button>
+        <button class="admin-tab" onclick="tab('senha',this)">Senha</button>
+      </div>
+      <div class="admin-content">
+
+        <!-- PRODUTOS -->
+        <div class="admin-sec on" id="tab-produtos">
+          <h3>Gerenciar Produtos</h3>
+          <p>Adicione, edite ou remova produtos do catálogo.</p>
+          <div id="aProdList"></div>
+          <div style="margin:1rem 0;padding:1.1rem 1.25rem;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);">
+            <div class="form-group" style="margin-bottom:0.5rem">
+              <label>&#11088; Produto "Mais Vendido" (faixa dourada no card)</label>
+              <select id="bestSellerSelect" onchange="saveBestSeller(this.value)">
+                <option value="">— Nenhum —</option>
+              </select>
+            </div>
+            <p style="font-size:0.7rem;color:var(--text-dim);margin:0">A faixa aparece no canto superior do produto selecionado.</p>
+          </div>
+          <hr class="sep">
+          <h3 style="font-size:1.05rem;margin-bottom:1.25rem" id="prodFormTitle">Adicionar Produto</h3>
+          <input type="hidden" id="editId">
+          <div class="form-row">
+            <div class="form-group"><label>Nome *</label><input type="text" id="pName" placeholder="Ex: Série Prata"></div>
+            <div class="form-group"><label>Subtítulo</label><input type="text" id="pSub" placeholder="Cachaça de Alambique"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Preço R$ *</label><input type="number" id="pPrice" placeholder="89.90" step="0.01" min="0"></div>
+            <div class="form-group"><label>Badge</label><input type="text" id="pBadge" placeholder="Destaque"></div>
+          </div>
+          <div class="form-group"><label>Descrição</label><textarea id="pDesc" placeholder="Descreva o produto..."></textarea></div>
+          <div class="form-group"><label>Foto do Produto</label>
+            <div class="upload-area">
+              <input type="file" id="pFile" accept="image/*" onchange="prevImg(this,'pPrev')">
+              <strong>Clique para selecionar a foto</strong>
+              <p>JPG, PNG ou WEBP — da sua galeria ou câmera</p>
+              <img id="pPrev" class="upload-prev">
+            </div>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <button class="btn-main" onclick="salvarProd()">Salvar Produto</button>
+            <button class="btn-sec" id="cancelBtn" style="display:none" onclick="cancelEdit()">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- APARÊNCIA -->
+        <div class="admin-sec" id="tab-aparencia">
+          <h3>Cores e Aparência</h3>
+          <p>Personalize as cores do site em tempo real.</p>
+          <div class="color-row">
+            <div><div class="color-lbl">Cor Principal (dourado)</div><div class="color-sub">Destaques, bordas e preços</div></div>
+            <div class="color-pick"><input type="color" id="cGold" value="#C9A84C" oninput="liveColor('--gold',this.value);this.nextElementSibling.textContent=this.value.toUpperCase()"><span id="lGold">#C9A84C</span></div>
+          </div>
+          <div class="color-row">
+            <div><div class="color-lbl">Fundo do Site</div><div class="color-sub">Cor de fundo principal</div></div>
+            <div class="color-pick"><input type="color" id="cBg" value="#0D0D0B" oninput="liveColor('--black',this.value);document.body.style.background=this.value;this.nextElementSibling.textContent=this.value.toUpperCase()"><span id="lBg">#0D0D0B</span></div>
+          </div>
+          <div class="color-row">
+            <div><div class="color-lbl">Fundo dos Cards</div><div class="color-sub">Cards de produto e painéis</div></div>
+            <div class="color-pick"><input type="color" id="cDark2" value="#1A1A16" oninput="liveColor('--dark2',this.value);this.nextElementSibling.textContent=this.value.toUpperCase()"><span id="lDark2">#1A1A16</span></div>
+          </div>
+          <div class="color-row">
+            <div><div class="color-lbl">Cor do Texto</div><div class="color-sub">Textos principais</div></div>
+            <div class="color-pick"><input type="color" id="cText" value="#E8E4D8" oninput="liveColor('--text',this.value);this.nextElementSibling.textContent=this.value.toUpperCase()"><span id="lText">#E8E4D8</span></div>
+          </div>
+          <hr class="sep">
+          <div class="form-group"><label>Nome da Marca</label><input type="text" id="brandName" value="Essência do Caparaó" oninput="document.querySelectorAll('.nav-logo').forEach(e=>e.textContent=this.value)"></div>
+          <button class="btn-main" onclick="saveApar()">Salvar Aparência</button>
+        </div>
+
+        <!-- CAPA -->
+        <div class="admin-sec" id="tab-capa">
+          <h3>Editar Capa</h3>
+          <p>Textos e imagem de fundo da seção principal.</p>
+          <div class="form-group"><label>Badge da Safra (texto do selo dourado no topo)</label><input type="text" id="eUrgency" placeholder="Edição Limitada — Safra 2024" oninput="document.getElementById('urgencyText').textContent=this.value"></div>
+          <div class="form-group"><label>Texto Eyebrow</label><input type="text" id="eEyebrow" oninput="document.getElementById('heroEyebrow').textContent=this.value"></div>
+          <div class="form-group"><label>Subtítulo</label><textarea id="eHeroSub" oninput="document.getElementById('heroSubtitle').textContent=this.value"></textarea></div>
+          <div class="form-group"><label>Imagem de Fundo (substitui a ilustração)</label>
+            <div class="upload-area">
+              <input type="file" id="heroFile" accept="image/*" onchange="prevHero(this)">
+              <strong>Clique para selecionar imagem</strong>
+              <p>Paisagem horizontal recomendada</p>
+              <img id="heroPrev" class="hero-prev">
+            </div>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.75rem">
+            <button class="btn-main" onclick="saveHero()">Salvar Capa</button>
+            <button class="btn-sec" onclick="removeHeroImg()">Remover Imagem</button>
+          </div>
+        </div>
+
+        <!-- TEXTOS -->
+        <div class="admin-sec" id="tab-textos">
+          <h3>Editar Textos</h3>
+          <p>Seções "Sobre" e "Terroir".</p>
+          <div class="form-row">
+            <div class="form-group"><label>Nome do Mestre</label><input type="text" id="eMaster" oninput="document.getElementById('masterName').textContent=this.value"></div>
+            <div class="form-group"><label>Cargo</label><input type="text" id="eMasterTitle" oninput="document.getElementById('masterTitle').textContent=this.value"></div>
+          </div>
+          <div class="form-group"><label>Parágrafo 1 — Sobre</label><textarea id="eAbout1" oninput="document.getElementById('aboutText1').textContent=this.value"></textarea></div>
+          <div class="form-group"><label>Parágrafo 2 — Sobre</label><textarea id="eAbout2" oninput="document.getElementById('aboutText2').textContent=this.value"></textarea></div>
+          <div class="form-group"><label>Texto Terroir</label><textarea id="eOrigin" oninput="document.getElementById('originText').textContent=this.value"></textarea></div>
+          <div class="form-group"><label>Foto do Mestre / Alambique</label>
+            <div class="upload-area">
+              <input type="file" id="aboutFile" accept="image/*" onchange="prevAbout(this)">
+              <strong>Clique para trocar a foto</strong>
+              <p>JPG ou PNG</p>
+              <img id="aboutPrev" class="upload-prev">
+            </div>
+          </div>
+          <button class="btn-main" onclick="saveTextos()">Salvar Textos</button>
+        </div>
+
+        <!-- CONTATO -->
+        <div class="admin-sec" id="tab-contato">
+          <h3>Contato e WhatsApp</h3>
+          <p>Configure o número para onde os pedidos serão enviados.</p>
+          <div class="form-group"><label>Número WhatsApp (só números, com DDI+DDD)</label><input type="text" id="eWa" placeholder="5528999698600" inputmode="numeric"></div>
+          <div class="form-group"><label>Descrição no Rodapé</label><textarea id="eFooter" oninput="document.getElementById('footerDesc').textContent=this.value"></textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label>Rodapé — Linha 1</label><input type="text" id="eC1" oninput="document.getElementById('fc1').textContent=this.value"></div>
+            <div class="form-group"><label>Rodapé — Linha 2</label><input type="text" id="eC2" oninput="document.getElementById('fc2').textContent=this.value"></div>
+          </div>
+          <button class="btn-main" onclick="saveContato()">Salvar Contato</button>
+        </div>
+
+        <!-- DEPOIMENTOS -->
+        <div class="admin-sec" id="tab-depoimentos">
+          <h3>Gerenciar Depoimentos</h3>
+          <p>Adicione, edite ou remova os comentários dos clientes.</p>
+          <div id="aProofList"></div>
+          <hr class="sep">
+          <h3 style="font-size:1.05rem;margin-bottom:1.25rem" id="proofFormTitle">Adicionar Depoimento</h3>
+          <input type="hidden" id="editProofId">
+          <div class="form-group"><label>Texto do Comentário *</label><textarea id="pText" placeholder="Uma cachaça que surpreende..."></textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label>Nome do Cliente *</label><input type="text" id="pAuthor" placeholder="Carlos M."></div>
+            <div class="form-group"><label>Cidade / Empresa</label><input type="text" id="pCity" placeholder="Vitória, ES"></div>
+          </div>
+          <div class="form-group"><label>Avaliação</label>
+            <select id="pStars">
+              <option value="5">★★★★★ — 5 estrelas</option>
+              <option value="4">★★★★☆ — 4 estrelas</option>
+              <option value="3">★★★☆☆ — 3 estrelas</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+            <button class="btn-main" onclick="salvarProof()">Salvar Depoimento</button>
+            <button class="btn-sec" id="cancelProofBtn" style="display:none" onclick="cancelProof()">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- SENHA -->
+        <div class="admin-sec" id="tab-senha">
+          <h3>Alterar Senha</h3>
+          <p>Defina uma nova senha para o painel.</p>
+          <div class="form-group"><label>Senha Atual</label><input type="password" id="curPwd"></div>
+          <div class="form-group"><label>Nova Senha (mín. 6 caracteres)</label><input type="password" id="newPwd"></div>
+          <div class="form-group"><label>Confirmar Nova Senha</label><input type="password" id="cfPwd"></div>
+          <button class="btn-main" onclick="changePwd()">Alterar Senha</button>
+          <div id="pwdMsg"></div>
+        </div>
+
+      </div>
+    </div><!-- /adminDash -->
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- Firebase Firestore via CDN (compat mode — funciona em script normal) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// ================================================================
+// FIREBASE — INICIALIZAÇÃO
+// ================================================================
+const _fbApp = firebase.initializeApp({
+  apiKey: "AIzaSyAF_KHCPSdhEOFLREtXZDZWJf4JDYyzN8Y",
+  authDomain: "caparao-b0790.firebaseapp.com",
+  projectId: "caparao-b0790",
+  storageBucket: "caparao-b0790.firebasestorage.app",
+  messagingSenderId: "231070943905",
+  appId: "1:231070943905:web:74649d1b0101d10d85bee0"
+});
+const _db = firebase.firestore();
+const _doc = _db.collection('site').doc('config');
+
+// ================================================================
+// ESTADO
+// ================================================================
+const DEF = {
+  password:'caparao2025',
+  whatsapp:'5528999698600',
+  products:[
+    {id:1,name:'Série Prata',sub:'Cachaça de Alambique',badge:'Clássica',price:89.90,
+     desc:'Cachaça branca de alambique, leve e aromática. Destilada nas encostas do Pico da Bandeira, com notas florais e frescor característico da altitude. 700ml · 42% Vol.',img:'prata.jpeg'},
+    {id:2,name:'Premium Envelhecida',sub:'Cachaça de Alambique Envelhecida',badge:'Premium',price:149.90,
+     desc:'Envelhecida em barris selecionados, adquire complexidade e suavidade únicas. Notas amadeiradas, baunilha e especiarias. A expressão máxima do Caparaó. 700ml · 42% Vol.',img:'premium_.jpeg'}
+  ],
+  cart:[],
+  colors:{gold:'#C9A84C',bg:'#0D0D0B',dark2:'#1A1A16',text:'#E8E4D8'},
+  heroImg:'',aboutImg:'',brandName:'Essência do Caparaó',
+  footerDesc:'Cachaça de alambique artesanal produzida nas encostas do Pico da Bandeira, em Ibitirama, Espírito Santo.',
+  c1:'Ibitirama, ES',c2:'Região do Caparaó',
+  urgencyText:'Edição Limitada — Safra 2024',
+  testimonials:[
+    {id:1,text:'Uma cachaça que surpreende. Suave, aromática e com um acabamento longo. Melhor que muita coisa importada que já experimentei.',author:'Carlos M.',city:'Vitória, ES',stars:5},
+    {id:2,text:'Sirvo no meu restaurante há dois anos. Os clientes sempre perguntam qual é a cachaça. O rótulo chama atenção e o sabor fideliza.',author:'Ana P.',city:'Bar & Restaurante, Alegre',stars:5},
+    {id:3,text:'Presente perfeito. Dei de aniversário e virou o assunto da festa. A garrafa Premium tem uma apresentação impecável.',author:'Roberto S.',city:'Cachoeiro de Itapemirim',stars:5}
+  ]
+};
+let S = JSON.parse(JSON.stringify(DEF));
+let pQty = {};
+let _saveTmr = null;
+
+// save() — grava no Firestore com debounce (carrinho fica local por sessão)
+function save(){
+  try{ localStorage.setItem('caparao_cart', JSON.stringify(S.cart)); }catch(e){}
+  clearTimeout(_saveTmr);
+  _saveTmr = setTimeout(()=>{
+    const payload = Object.assign({}, S, {cart:[]});
+    _doc.set(payload).catch(e=>console.warn('Firestore save:', e));
+  }, 700);
+}
+
+// ================================================================
+// INIT — aplicar estado ao DOM
+// ================================================================
+function initSite(){
+  applyColors(S.colors);
+  applyHeroImg(S.heroImg);
+  applyAboutImg(S.aboutImg);
+  applyBrand(S.brandName);
+  renderProducts();
+  renderProof();
+  updateFab();
+  updateWaLink();
+  spawnParticles();
+  initReveal();
+  initParallax();
+  document.getElementById('fc1').textContent = S.c1||'Ibitirama, ES';
+  document.getElementById('fc2').textContent = S.c2||'Região do Caparaó';
+  document.getElementById('footerDesc').textContent = S.footerDesc||DEF.footerDesc;
+  if(S.urgencyText) document.getElementById('urgencyText').textContent = S.urgencyText;
+  setTimeout(()=>{ showTicker(); setInterval(showTicker, 6000); }, 3000);
+}
+
+// ================================================================
+// FIREBASE — CARREGAMENTO INICIAL + SINCRONIZAÇÃO EM TEMPO REAL
+// ================================================================
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Restaura carrinho da sessão atual (local)
+  try{ const lc=localStorage.getItem('caparao_cart'); if(lc) S.cart=JSON.parse(lc); }catch(e){}
+
+  // Carrega do Firestore e inicia
+  _doc.get().then(snap=>{
+    if(snap.exists){
+      S = Object.assign({}, DEF, snap.data(), {cart: S.cart});
+    } else {
+      // Primeira vez: salva os valores padrão
+      _doc.set(Object.assign({},DEF,{cart:[]}));
+    }
+    initSite();
+  }).catch(e=>{
+    console.warn('Firestore offline, usando padrão:', e);
+    initSite();
+  });
+
+  // Escuta atualizações em tempo real — quando admin salva, todos veem
+  _doc.onSnapshot(snap=>{
+    if(!snap.exists) return;
+    const cartAtual = S.cart;
+    S = Object.assign({}, DEF, snap.data(), {cart: cartAtual});
+    applyColors(S.colors);
+    applyHeroImg(S.heroImg);
+    applyAboutImg(S.aboutImg);
+    applyBrand(S.brandName);
+    renderProducts();
+    renderProof();
+    updateWaLink();
+    document.getElementById('fc1').textContent = S.c1||'Ibitirama, ES';
+    document.getElementById('fc2').textContent = S.c2||'Região do Caparaó';
+    document.getElementById('footerDesc').textContent = S.footerDesc||DEF.footerDesc;
+    if(S.urgencyText) document.getElementById('urgencyText').textContent = S.urgencyText;
+  }, e=>console.warn('Snapshot error:', e));
+});
+
+// scroll nav
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+},{passive:true});
+
+// ================================================================
+// MOBILE MENU
+// ================================================================
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+
+// ================================================================
+// PARALLAX
+// ================================================================
+function initParallax(){
+  window.addEventListener('scroll',()=>{
+    const c=document.getElementById('heroContent');
+    if(c) c.style.transform='translateY('+window.scrollY*0.16+'px)';
+  },{passive:true});
+}
+
+// ================================================================
+// PARTICLES
+// ================================================================
+function spawnParticles(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.cssText='left:'+Math.random()*100+'%;bottom:'+Math.random()*35+'%;--dur:'+(6+Math.random()*10)+'s;--delay:'+Math.random()*9+'s;';
+    c.appendChild(p);
+  }
+}
+
+// ================================================================
+// REVEAL
+// ================================================================
+function initReveal(){
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+}
+
+// ================================================================
+// CORES
+// ================================================================
+function liveColor(v,val){document.documentElement.style.setProperty(v,val);}
+function applyColors(c){
+  if(!c)return;
+  if(c.gold){liveColor('--gold',c.gold);const el=document.getElementById('cGold');if(el){el.value=c.gold;document.getElementById('lGold').textContent=c.gold.toUpperCase();}}
+  if(c.bg){liveColor('--black',c.bg);document.body.style.background=c.bg;const el=document.getElementById('cBg');if(el){el.value=c.bg;document.getElementById('lBg').textContent=c.bg.toUpperCase();}}
+  if(c.dark2){liveColor('--dark2',c.dark2);const el=document.getElementById('cDark2');if(el){el.value=c.dark2;document.getElementById('lDark2').textContent=c.dark2.toUpperCase();}}
+  if(c.text){liveColor('--text',c.text);const el=document.getElementById('cText');if(el){el.value=c.text;document.getElementById('lText').textContent=c.text.toUpperCase();}}
+}
+function saveApar(){
+  S.colors={gold:document.getElementById('cGold').value,bg:document.getElementById('cBg').value,dark2:document.getElementById('cDark2').value,text:document.getElementById('cText').value};
+  S.brandName=document.getElementById('brandName').value;
+  applyBrand(S.brandName);
+  save(); toast('Aparência salva!');
+}
+function applyBrand(n){
+  if(!n)return;
+  document.querySelectorAll('.nav-logo').forEach(e=>e.textContent=n);
+  document.title=n+' — Cachaça de Alambique';
+}
+
+// ================================================================
+// HERO IMAGE
+// ================================================================
+function applyHeroImg(src){
+  const bg=document.getElementById('heroBgImg');
+  const mt=document.getElementById('mountainSvg');
+  if(src){bg.style.backgroundImage="url('"+src+"')";bg.style.display='block';if(mt)mt.style.display='none';}
+  else{bg.style.backgroundImage='';bg.style.display='none';if(mt)mt.style.display='block';}
+}
+function prevHero(input){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const pv=document.getElementById('heroPrev');
+    pv.src=e.target.result;pv.style.display='block';
+    applyHeroImg(e.target.result);
+    S.heroImg=e.target.result;
+  };r.readAsDataURL(f);
+}
+function removeHeroImg(){S.heroImg='';applyHeroImg('');document.getElementById('heroPrev').style.display='none';save();toast('Imagem de fundo removida');}
+function saveHero(){
+  const ug=document.getElementById('eUrgency').value;
+  const ey=document.getElementById('eEyebrow').value;
+  const su=document.getElementById('eHeroSub').value;
+  if(ug){document.getElementById('urgencyText').textContent=ug;S.urgencyText=ug;}
+  if(ey)document.getElementById('heroEyebrow').textContent=ey;
+  if(su)document.getElementById('heroSubtitle').textContent=su;
+  save(); toast('Capa salva!');
+}
+
+// ================================================================
+// ABOUT IMAGE
+// ================================================================
+function applyAboutImg(src){const el=document.getElementById('aboutImg');if(src&&el){el.src=src;el.style.opacity='1';}}
+function prevAbout(input){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const pv=document.getElementById('aboutPrev');pv.src=e.target.result;pv.style.display='block';
+    applyAboutImg(e.target.result);S.aboutImg=e.target.result;
+  };r.readAsDataURL(f);
+}
+
+// ================================================================
+// PREVIEW PRODUTO
+// ================================================================
+function prevImg(input,prevId){
+  const f=input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{const pv=document.getElementById(prevId);pv.src=e.target.result;pv.style.display='block';};
+  r.readAsDataURL(f);
+}
+
+// ================================================================
+// SOCIAL PROOF TICKER — bandwagon effect (psicologia)
+// ================================================================
+const TICKER_MSGS = [
+  {name:'João V.', city:'Ibitirama', prod:'Série Prata', time:'há 12 min'},
+  {name:'Marcos A.', city:'Alegre', prod:'Premium Envelhecida', time:'há 28 min'},
+  {name:'Fernanda L.', city:'Cachoeiro', prod:'Série Prata', time:'há 45 min'},
+  {name:'Ricardo B.', city:'Vitória', prod:'Premium Envelhecida', time:'há 1h'},
+  {name:'Paulo S.', city:'Guaçuí', prod:'Série Prata', time:'há 2h'},
+];
+let tickerIdx = 0;
+function showTicker(){
+  const c = document.getElementById('socialTicker');
+  if(!c) return;
+  const m = TICKER_MSGS[tickerIdx % TICKER_MSGS.length];
+  tickerIdx++;
+  const el = document.createElement('div');
+  el.className = 'ticker-item';
+  el.innerHTML = `<span class="ticker-dot"></span><span class="ticker-text"><strong>${m.name} de ${m.city}</strong><br>pediu ${m.prod} ${m.time}</span>`;
+  c.innerHTML = '';
+  c.appendChild(el);
+  setTimeout(()=>{ if(c.firstChild) c.firstChild.style.opacity='0'; }, 4500);
+}
+
+// ================================================================
+// RENDER PRODUTOS — com elementos psicológicos
+// ================================================================
+function renderProducts(){
+  const grid=document.getElementById('productsGrid');
+  if(!grid)return;
+  if(!S.products.length){
+    grid.innerHTML='<p style="text-align:center;color:var(--text-dim);padding:3rem;grid-column:1/-1">Nenhum produto cadastrado.</p>';
+    return;
+  }
+  const fb=name=>`data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='533'><rect width='400' height='533' fill='%231A1A16'/><text x='200' y='266' text-anchor='middle' fill='%23605C4E' font-size='14' font-family='sans-serif'>${encodeURIComponent(name)}</text></svg>`;
+  // Estoque simulado — scarcity (truque de escassez cognitiva)
+  const stocks = [73, 41]; // % vendido por produto
+  grid.innerHTML=S.products.map((p,i)=>{
+    if(!pQty[p.id])pQty[p.id]=1;
+    const sold = stocks[i] || Math.floor(40+Math.random()*40);
+    const left = Math.floor((100-sold)/10); // unidades restantes
+    const isBest = p.id === (S.bestSellerId || S.products[0]?.id);
+    return`<div class="product-card reveal" style="--delay:${i*0.15}s">
+      ${isBest?'<div class="bestseller-ribbon">Mais Vendido</div>':''}
+      <span class="product-badge">${p.badge||''}</span>
+      <img src="${p.img||fb(p.name)}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.src='${fb(p.name)}'">
+      <!-- Estrelas — social proof visual (aumenta percepção de valor) -->
+      <div class="stars">★★★★★<span class="stars-count">(${18+i*7} avaliações)</span></div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-sub">${p.sub||''}</div>
+      <div class="product-desc">${p.desc||''}</div>
+      <!-- Barra de estoque — scarcity bias -->
+      <div class="stock-bar">
+        <div class="stock-label"><span>Disponibilidade</span><span>${left} un. restantes</span></div>
+        <div class="stock-track"><div class="stock-fill" style="width:${sold}%"></div></div>
+      </div>
+      <div class="product-price">R$ ${p.price.toFixed(2).replace('.',',')} <span>/ 700ml</span></div>
+      <div class="prod-qty-row">
+        <div class="prod-qty-ctrl">
+          <button class="prod-qty-btn" onclick="pqChange(${p.id},-1)">−</button>
+          <span class="prod-qty-num" id="pq${p.id}">${pQty[p.id]}</span>
+          <button class="prod-qty-btn" onclick="pqChange(${p.id},1)">+</button>
+        </div>
+        <button class="btn-buy" onclick="addCart(${p.id})">Adicionar</button>
+      </div>
+      <!-- Trust signals — reduz ansiedade de compra -->
+      <div class="trust-row">
+        <span class="trust-item">Pix disponível</span>
+        <span class="trust-item">Entrega rápida</span>
+        <span class="trust-item">Artesanal</span>
+      </div>
+    </div>`;
+  }).join('');
+  initReveal();
+}
+
+function pqChange(id,d){
+  pQty[id]=Math.max(1,(pQty[id]||1)+d);
+  const el=document.getElementById('pq'+id);if(el)el.textContent=pQty[id];
+}
+
+// ================================================================
+// CARRINHO
+// ================================================================
+function addCart(id){
+  const p=S.products.find(x=>x.id===id);if(!p)return;
+  const qty=pQty[id]||1;
+  const ex=S.cart.find(c=>c.id===id);
+  if(ex)ex.qty+=qty; else S.cart.push({id,name:p.name,price:p.price,qty});
+  save(); updateFab();
+  pQty[id]=1; const el=document.getElementById('pq'+id);if(el)el.textContent=1;
+  toast(qty+'× '+p.name+' adicionado!');
+}
+function updateFab(){
+  const n=S.cart.reduce((a,c)=>a+c.qty,0);
+  document.getElementById('cartCount').textContent=n;
+  document.getElementById('cartFab').classList.toggle('show',n>0);
+}
+function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('on');}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('on');}
+function renderCart(){
+  const body=document.getElementById('cartBody');
+  const sec=document.getElementById('cartTotalSec');
+  if(!S.cart.length){body.innerHTML='<div class="empty-cart">Seu carrinho está vazio.</div>';sec.style.display='none';return;}
+  let total=0;
+  body.innerHTML=S.cart.map(item=>{
+    const sub=item.price*item.qty;total+=sub;
+    return`<div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-sub">R$ ${sub.toFixed(2).replace('.',',')}</div>
+      </div>
+      <div class="cqty">
+        <button class="cqty-btn" onclick="cqChange(${item.id},-1)">−</button>
+        <span class="cqty-num">${item.qty}</span>
+        <button class="cqty-btn" onclick="cqChange(${item.id},1)">+</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotalVal').textContent='R$ '+total.toFixed(2).replace('.',',');
+  sec.style.display='block';
+}
+function cqChange(id,d){
+  const idx=S.cart.findIndex(c=>c.id===id);if(idx<0)return;
+  S.cart[idx].qty+=d;
+  if(S.cart[idx].qty<=0)S.cart.splice(idx,1);
+  save();updateFab();renderCart();
+}
+
+// ================================================================
+// PEDIDO — WHATSAPP (CORRIGIDO)
+// ================================================================
+function openOrder(){closeCart();document.getElementById('orderOverlay').classList.add('on');}
+function closeOrder(){document.getElementById('orderOverlay').classList.remove('on');}
+
+function enviarPedido(){
+  const nome   =document.getElementById('oNome').value.trim();
+  const empresa=document.getElementById('oEmpresa').value.trim();
+  const local  =document.getElementById('oLocal').value.trim();
+  const pagto  =document.getElementById('oPagto').value;
+  const entrega=document.getElementById('oEntrega').value;
+
+  if(!nome){toast('Por favor, informe seu nome.');return;}
+  if(!S.cart.length){toast('Carrinho vazio.');return;}
+
+  const total=S.cart.reduce((a,c)=>a+c.price*c.qty,0);
+
+  // Montar mensagem no formato exato solicitado
+  let msg='Olá, quero fazer um pedido:\n';
+  msg+='Nome: '+nome+'\n';
+  if(empresa) msg+='Empresa: '+empresa+'\n';
+  msg+='Localização: '+(local||'Não informada')+'\n';
+  msg+='Pedido:\n';
+  S.cart.forEach(c=>{msg+='- '+c.name+' 700ml ('+c.qty+'x)\n';});
+  msg+='Total: R$ '+total.toFixed(2).replace('.',',')+'\n';
+  msg+='Forma de pagamento: '+pagto+'\n';
+  msg+=entrega;
+
+  const num=(S.whatsapp||'5528999698600').replace(/\D/g,'');
+  const url='https://wa.me/'+num+'?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
+
+  // limpar carrinho
+  S.cart=[];save();updateFab();
+  closeOrder();
+  toast('Pedido enviado!');
+}
+
+// ================================================================
+// ADMIN — LOGIN
+// ================================================================
+function openAdmin(){
+  document.getElementById('adminLogin').style.display='block';
+  document.getElementById('adminDash').style.display='none';
+  document.getElementById('aPwd').value='';
+  document.getElementById('loginError').style.display='none';
+  document.getElementById('adminOverlay').classList.add('on');
+}
+function closeAdmin(){document.getElementById('adminOverlay').classList.remove('on');}
+function checkLogin(){
+  if(document.getElementById('aPwd').value===S.password){
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminDash').style.display='block';
+    loadAdmin();
+  } else {
+    document.getElementById('loginError').style.display='block';
+  }
+}
+function loadAdmin(){
+  document.getElementById('eUrgency').value=document.getElementById('urgencyText').textContent;
+  document.getElementById('eEyebrow').value=document.getElementById('heroEyebrow').textContent;
+  document.getElementById('eHeroSub').value=document.getElementById('heroSubtitle').textContent;
+  document.getElementById('eMaster').value=document.getElementById('masterName').textContent;
+  document.getElementById('eMasterTitle').value=document.getElementById('masterTitle').textContent;
+  document.getElementById('eAbout1').value=document.getElementById('aboutText1').textContent;
+  document.getElementById('eAbout2').value=document.getElementById('aboutText2').textContent;
+  document.getElementById('eOrigin').value=document.getElementById('originText').textContent;
+  document.getElementById('eWa').value=S.whatsapp||'5528999698600';
+  document.getElementById('eFooter').value=document.getElementById('footerDesc').textContent;
+  document.getElementById('eC1').value=document.getElementById('fc1').textContent;
+  document.getElementById('eC2').value=document.getElementById('fc2').textContent;
+  document.getElementById('brandName').value=S.brandName||'Essência do Caparaó';
+  applyColors(S.colors);
+  renderAdminProds();
+  renderAdminProofs();
+}
+
+// ================================================================
+// ADMIN — TABS
+// ================================================================
+function tab(name,el){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-sec').forEach(s=>s.classList.remove('on'));
+  el.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('on');
+}
+
+// ================================================================
+// ADMIN — PRODUTOS
+// ================================================================
+function renderAdminProds(){
+  const list=document.getElementById('aProdList');
+  if(!S.products.length){list.innerHTML='<p style="color:var(--text-dim);font-size:0.82rem">Nenhum produto ainda.</p>';return;}
+  list.innerHTML=S.products.map(p=>`
+    <div class="prod-item">
+      <div class="prod-item-info"><div class="prod-item-name">${p.name}</div><div class="prod-item-meta">${p.sub||''} · ${p.badge||''}</div></div>
+      <div class="prod-item-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
+      <button class="btn-sec" style="padding:0.4rem 0.75rem;font-size:0.66rem" onclick="editProd(${p.id})">Editar</button>
+      <button class="btn-del" onclick="deleteProd(${p.id})">Remover</button>
+    </div>`).join('');
+  // Atualiza select de Mais Vendido
+  const sel=document.getElementById('bestSellerSelect');
+  if(sel){
+    sel.innerHTML='<option value="">— Nenhum —</option>'+S.products.map(p=>`<option value="${p.id}" ${p.id===(S.bestSellerId||S.products[0]?.id)?'selected':''}>${p.name}</option>`).join('');
+  }
+}
+function saveBestSeller(val){
+  S.bestSellerId = val ? parseInt(val) : null;
+  save();
+  renderProducts();
+  toast('Produto "Mais Vendido" atualizado!');
+}
+function editProd(id){
+  const p=S.products.find(x=>x.id===id);if(!p)return;
+  document.getElementById('pName').value=p.name;
+  document.getElementById('pSub').value=p.sub||'';
+  document.getElementById('pBadge').value=p.badge||'';
+  document.getElementById('pPrice').value=p.price;
+  document.getElementById('pDesc').value=p.desc||'';
+  document.getElementById('editId').value=id;
+  document.getElementById('prodFormTitle').textContent='Editando: '+p.name;
+  document.getElementById('cancelBtn').style.display='inline-block';
+  if(p.img&&p.img.startsWith('data:')){const pv=document.getElementById('pPrev');pv.src=p.img;pv.style.display='block';}
+  document.getElementById('tab-produtos').scrollIntoView({behavior:'smooth',block:'end'});
+}
+function cancelEdit(){
+  document.getElementById('editId').value='';
+  document.getElementById('prodFormTitle').textContent='Adicionar Produto';
+  document.getElementById('cancelBtn').style.display='none';
+  ['pName','pSub','pBadge','pPrice','pDesc'].forEach(id=>document.getElementById(id).value='');
+  const pv=document.getElementById('pPrev');pv.src='';pv.style.display='none';
+  document.getElementById('pFile').value='';
+}
+function salvarProd(){
+  const name=document.getElementById('pName').value.trim();
+  const price=parseFloat(document.getElementById('pPrice').value);
+  if(!name||isNaN(price)||price<=0){toast('Preencha nome e preço.');return;}
+  const sub=document.getElementById('pSub').value.trim();
+  const badge=document.getElementById('pBadge').value.trim()||'Novo';
+  const desc=document.getElementById('pDesc').value.trim();
+  const eid=parseInt(document.getElementById('editId').value)||0;
+  const pv=document.getElementById('pPrev');
+  const f=document.getElementById('pFile').files[0];
+  function doSave(img){
+    if(eid){
+      const idx=S.products.findIndex(p=>p.id===eid);
+      if(idx>=0){S.products[idx]={...S.products[idx],name,sub,badge,price,desc};if(img)S.products[idx].img=img;}
+      toast('Produto atualizado!');
+    } else {
+      S.products.push({id:Date.now(),name,sub,badge,price,desc,img:img||''});
+      toast('Produto adicionado!');
+    }
+    save();renderProducts();renderAdminProds();cancelEdit();
+  }
+  if(f){const r=new FileReader();r.onload=e=>doSave(e.target.result);r.readAsDataURL(f);}
+  else doSave(pv&&pv.src&&pv.src.startsWith('data:')?pv.src:null);
+}
+function deleteProd(id){
+  if(!confirm('Remover este produto?'))return;
+  S.products=S.products.filter(p=>p.id!==id);
+  S.cart=S.cart.filter(c=>c.id!==id);
+  save();renderProducts();renderAdminProds();updateFab();
+  toast('Produto removido.');
+}
+
+// ================================================================
+// ADMIN — TEXTOS
+// ================================================================
+function saveTextos(){save();toast('Textos salvos!');}
+
+// ================================================================
+// ADMIN — CONTATO
+// ================================================================
+function saveContato(){
+  S.whatsapp=(document.getElementById('eWa').value||'5528999698600').replace(/\D/g,'');
+  S.footerDesc=document.getElementById('eFooter').value;
+  S.c1=document.getElementById('eC1').value;
+  S.c2=document.getElementById('eC2').value;
+  save();updateWaLink();toast('Contato salvo!');
+}
+function updateWaLink(){
+  const num=(S.whatsapp||'5528999698600').replace(/\D/g,'');
+  document.getElementById('waLink').href='https://wa.me/'+num;
+}
+
+// ================================================================
+// ADMIN — DEPOIMENTOS
+// ================================================================
+function renderProof(){
+  const grid=document.getElementById('proofGrid');
+  if(!grid)return;
+  const list=S.testimonials||[];
+  if(!list.length){
+    grid.innerHTML='<p style="text-align:center;color:var(--text-dim);padding:2rem;grid-column:1/-1">Nenhum depoimento ainda.</p>';
+    return;
+  }
+  const stars=n=>'★'.repeat(n)+'☆'.repeat(5-n);
+  grid.innerHTML=list.map(t=>`
+    <div class="proof-card reveal">
+      <div class="proof-stars">${stars(t.stars||5)}</div>
+      <p class="proof-text">${t.text}</p>
+      <div class="proof-author">${t.author}${t.city?' — '+t.city:''}</div>
+    </div>`).join('');
+  initReveal();
+}
+
+function renderAdminProofs(){
+  const list=document.getElementById('aProofList');
+  const items=S.testimonials||[];
+  if(!items.length){list.innerHTML='<p style="color:var(--text-dim);font-size:0.82rem">Nenhum depoimento ainda.</p>';return;}
+  list.innerHTML=items.map(t=>`
+    <div class="prod-item" style="align-items:flex-start;flex-direction:column;gap:0.5rem">
+      <div style="display:flex;justify-content:space-between;width:100%;align-items:center;flex-wrap:wrap;gap:0.5rem">
+        <div>
+          <div class="prod-item-name">${t.author}${t.city?' — '+t.city:''}</div>
+          <div class="prod-item-meta">${'★'.repeat(t.stars||5)} · ${t.text.substring(0,55)}${t.text.length>55?'...':''}</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-shrink:0">
+          <button class="btn-sec" style="padding:0.4rem 0.75rem;font-size:0.66rem" onclick="editProof(${t.id})">Editar</button>
+          <button class="btn-del" onclick="deleteProof(${t.id})">Remover</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function editProof(id){
+  const t=(S.testimonials||[]).find(x=>x.id===id);
+  if(!t)return;
+  document.getElementById('pText').value=t.text;
+  document.getElementById('pAuthor').value=t.author;
+  document.getElementById('pCity').value=t.city||'';
+  document.getElementById('pStars').value=t.stars||5;
+  document.getElementById('editProofId').value=id;
+  document.getElementById('proofFormTitle').textContent='Editando depoimento de '+t.author;
+  document.getElementById('cancelProofBtn').style.display='inline-block';
+  document.getElementById('tab-depoimentos').scrollIntoView({behavior:'smooth',block:'end'});
+}
+
+function cancelProof(){
+  document.getElementById('editProofId').value='';
+  document.getElementById('proofFormTitle').textContent='Adicionar Depoimento';
+  document.getElementById('cancelProofBtn').style.display='none';
+  ['pText','pAuthor','pCity'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pStars').value='5';
+}
+
+function salvarProof(){
+  const text=document.getElementById('pText').value.trim();
+  const author=document.getElementById('pAuthor').value.trim();
+  if(!text||!author){toast('Preencha o comentário e o nome.');return;}
+  const city=document.getElementById('pCity').value.trim();
+  const stars=parseInt(document.getElementById('pStars').value)||5;
+  const eid=parseInt(document.getElementById('editProofId').value)||0;
+  if(!S.testimonials)S.testimonials=[];
+  if(eid){
+    const idx=S.testimonials.findIndex(t=>t.id===eid);
+    if(idx>=0)S.testimonials[idx]={...S.testimonials[idx],text,author,city,stars};
+    toast('Depoimento atualizado!');
+  } else {
+    S.testimonials.push({id:Date.now(),text,author,city,stars});
+    toast('Depoimento adicionado!');
+  }
+  save();renderProof();renderAdminProofs();cancelProof();
+}
+
+function deleteProof(id){
+  if(!confirm('Remover este depoimento?'))return;
+  S.testimonials=(S.testimonials||[]).filter(t=>t.id!==id);
+  save();renderProof();renderAdminProofs();
+  toast('Depoimento removido.');
+}
+
+// ================================================================
+// ADMIN — SENHA
+// ================================================================
+function changePwd(){
+  const cur=document.getElementById('curPwd').value;
+  const nw=document.getElementById('newPwd').value;
+  const cf=document.getElementById('cfPwd').value;
+  const msg=document.getElementById('pwdMsg');
+  msg.style.display='block';
+  if(cur!==S.password){msg.style.color='#c85050';msg.textContent='Senha atual incorreta.';return;}
+  if(nw.length<6){msg.style.color='#c85050';msg.textContent='Mínimo 6 caracteres.';return;}
+  if(nw!==cf){msg.style.color='#c85050';msg.textContent='As senhas não coincidem.';return;}
+  S.password=nw;save();
+  msg.style.color='var(--gold)';msg.textContent='Senha alterada com sucesso!';
+  ['curPwd','newPwd','cfPwd'].forEach(id=>document.getElementById(id).value='');
+}
+
+// ================================================================
+// TOAST
+// ================================================================
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>
